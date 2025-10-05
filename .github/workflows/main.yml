@@ -1,0 +1,30 @@
+name: Combined Workflow (Email + Cache)
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 22f3001137@ds.study.iitm.ac.in
+        run: echo "Hello, world! Workflow triggered successfully."
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: cache-b7d1cba
+
+      - name: prime-cache-b7d1cba
+        run: |
+          echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
+
+      - name: Done
+        run: echo "All workflow steps completed successfully."
